@@ -1,6 +1,6 @@
 package com.climb.common.user.bean;
 
-import com.climb.common.user.UserDetails;
+import com.climb.common.user.UserBaseInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @date 2020/9/18 16:52
  */
 @Data
-public class DefaultUserDetails implements Serializable, UserDetails {
+public class DefaultUserBaseInfo implements Serializable, UserBaseInfo {
 
     private static final long serialVersionUID = -8717357144429994025L;
     /**

@@ -2,5 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.climb.common.validate.ValidateAutoAdvisor,\
   com.climb.common.handler.GlobalExceptionHandler,\
   com.climb.common.config.JacksonConfig,\
-  com.climb.common.config.DateConverter
+  com.climb.common.config.DateConverter,\
+  com.climb.common.config.ApplicationContextConfig
 

@@ -2,8 +2,8 @@ package com.climb.common.user.util;
 
 import com.alibaba.fastjson.JSON;
 import com.climb.common.constant.CommonConstant;
-import com.climb.common.user.UserDetails;
-import com.climb.common.user.bean.DefaultUserDetails;
+import com.climb.common.user.UserBaseInfo;
+import com.climb.common.user.bean.DefaultUserBaseInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
@@ -28,19 +28,19 @@ public class UserUtils {
      * @author lht
      * @since  2020/11/26 14:44
      */
-    public static UserDetails getUserDetails(HttpServletRequest request){
-        DefaultUserDetails userInfo = null;
+    public static UserBaseInfo getUserDetails(HttpServletRequest request){
+        DefaultUserBaseInfo userInfo = null;
         String userStr = request.getHeader(CommonConstant.USER_INFO);
         if(!StringUtils.isEmpty(userStr)){
             try{
-                userInfo = JSON.parseObject(URLDecoder.decode(userStr,CommonConstant.UTF8), DefaultUserDetails.class);
+                userInfo = JSON.parseObject(URLDecoder.decode(userStr,CommonConstant.UTF8), DefaultUserBaseInfo.class);
             }catch (Exception e){
                 log.error("获取用户信息失败",e);
             }
         }
         //设置未登录用户信息
         if(userInfo==null){
-            userInfo = new DefaultUserDetails();
+            userInfo = new DefaultUserBaseInfo();
             userInfo.setId(NONE_USER_ID);
             userInfo.setName("未登录");
         }
@@ -52,7 +52,7 @@ public class UserUtils {
      * @author lht
      * @since  2020/11/26 14:45
      */
-    public static boolean isNoneUser(UserDetails userDetails){
+    public static boolean isNoneUser(UserBaseInfo userDetails){
         return userDetails==null||NONE_USER_ID.equals(userDetails.getId());
     }
 }

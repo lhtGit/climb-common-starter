@@ -5,13 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * 登录用户信息
+ * 用于请求
  * @author lht
  * @since 2020/11/26 15:09
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationFrom {
+public class LoginUserInfo {
     /**
      * 认证主体
      * @author lht

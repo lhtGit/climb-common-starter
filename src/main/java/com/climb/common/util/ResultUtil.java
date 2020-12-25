@@ -4,6 +4,8 @@ package com.climb.common.util;
 import com.climb.common.bean.PageResult;
 import com.climb.common.bean.Result;
 import com.climb.common.constant.CommonConstant;
+import com.climb.common.exception.ErrorMessage;
+
 import java.util.List;
 import java.util.Set;
 
@@ -92,6 +94,13 @@ public class ResultUtil {
         Result<T> result = new Result<>();
         result.setCode(code);
         result.setMsg(msg);
+        return result;
+    }
+    public static <T> Result<T> error(ErrorMessage errorMessage, T date){
+        Result<T> result = new Result<>();
+        result.setCode(errorMessage.getCode());
+        result.setMsg(errorMessage.getMsg());
+        result.setData(date);
         return result;
     }
 
