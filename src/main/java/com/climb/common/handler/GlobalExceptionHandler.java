@@ -4,6 +4,7 @@ import com.climb.common.bean.Result;
 import com.climb.common.exception.GlobalException;
 import com.climb.common.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,13 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 全局异常处理
- * TODO 还没有处理seata事务问题
  * @author lht
  * @since 2020/9/25 11:54
  */
 @Slf4j
 @ControllerAdvice
+@ConditionalOnMissingClass({"io.seata.spring.annotation.GlobalTransactionalInterceptor"})
 public class GlobalExceptionHandler {
+
+    public GlobalExceptionHandler() {
+        log.info("GlobalExceptionHandler init");
+    }
 
     @ExceptionHandler(value = GlobalException.class)
     @ResponseBody
@@ -36,6 +41,5 @@ public class GlobalExceptionHandler {
         log.error("未知异常：",e);
         return ResultUtil.error("服务器异常");
     }
-
 
 }

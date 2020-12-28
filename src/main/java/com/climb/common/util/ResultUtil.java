@@ -96,6 +96,12 @@ public class ResultUtil {
         result.setMsg(msg);
         return result;
     }
+    public static <T> Result<T> error(ErrorMessage errorMessage){
+        Result<T> result = new Result<>();
+        result.setCode(errorMessage.getCode());
+        result.setMsg(errorMessage.getMsg());
+        return result;
+    }
     public static <T> Result<T> error(ErrorMessage errorMessage, T date){
         Result<T> result = new Result<>();
         result.setCode(errorMessage.getCode());
