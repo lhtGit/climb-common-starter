@@ -93,7 +93,7 @@ public class Sequence {
             /*
              * GET jvmPid
              */
-            mpid.append(name.split(StringPool.AT)[0]);
+            mpid.append(name.split("@")[0]);
         }
         /*
          * MAC + PID 的 hashcode 获取16个低位
