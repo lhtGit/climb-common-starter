@@ -1,31 +1,36 @@
 package com.climb.common.user.bean;
 
-import java.io.Serializable;
+import com.climb.common.user.bean.MenuInfo;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 /**
  * @author lht
- * @since 2021/1/13 17:02
+ * @since 2021/1/13 17:07
  */
-public interface MenuInfo extends Serializable {
+@Getter
+@Setter
+public class MenuInfo {
     /**
      * 菜单id
      */
-    String getId();
+    String id;
     /**
      * 菜单父级id
      */
-    String getParentId();
+    String parentId;
     /**
      * 菜单名称
      */
-    String getName();
+    String name;
     /**
      * 图标
      */
-    String getIcon();
+    String icon;
     /**
      * 叶子菜单结合
      */
-    List<MenuInfo> getLeafMenuInfos();
+    List<MenuInfo> leafMenuInfos;
 }

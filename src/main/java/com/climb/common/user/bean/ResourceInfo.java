@@ -1,27 +1,33 @@
 package com.climb.common.user.bean;
 
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author lht
- * @since 2021/1/13 15:46
+ * @since 2021/1/13 15:49
  */
-public interface ResourceInfo extends Serializable {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResourceInfo  {
     /**
      * 资源id
      */
-    String getId();
+    String id;
     /**
      * 名称
      */
-    String getName();
+    String name;
     /**
      * 路径
      */
-    String getPath();
+    String path;
     /**
-     * 方法（POST/GET..）必须为大写
+     * 方法（POST/..）必须为大写
      */
-    String getMethod();
-
+    String method;
 }

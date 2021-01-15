@@ -1,6 +1,5 @@
-package com.climb.common.user.bean.base;
+package com.climb.common.user.bean;
 
-import com.climb.common.user.bean.RoleInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class DefaultRoleinfo implements RoleInfo {
+public class Roleinfo  {
 
     private String id;
 

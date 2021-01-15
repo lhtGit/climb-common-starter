@@ -1,36 +1,41 @@
 package com.climb.common.user.bean;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 /**
  * @author lht
- * @since 2021/1/13 15:45
+ * @since 2021/1/13 15:49
  */
-public interface UserInfoBase extends Serializable {
-
+@Getter
+@Setter
+public class UserInfoBase  {
     /**
      * 用户id
      */
-    String getId();
+    String id;
     /**
      * 用户名
      */
-    String getUsername();
+    String username;
     /**
      * 昵称
      */
-    String getName();
+    String name;
     /**
      * 手机号
      */
-    String getPhone();
+    String phone;
     /**
      * mail
      */
-    String getMail();
+    String mail;
     /**
      * 性别 0 女 1 男
      */
-    Integer getGender();
+    Integer gender;
+
+    Date date;
 }

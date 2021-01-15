@@ -51,7 +51,7 @@ public class UserUtils {
      * @author lht
      * @since  2020/11/26 14:45
      */
-    public static boolean isNoneUser(UserBaseInfo userDetails){
-        return userDetails==null||NONE_USER_ID.equals(userDetails.getId());
+    public static boolean isNoneUser(UserBaseInfo userInfo){
+        return userInfo==null||NONE_USER_ID.equals(userInfo.getId());
     }
 }
