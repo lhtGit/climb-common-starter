@@ -17,17 +17,17 @@ public class ResourceInfo  {
     /**
      * 资源id
      */
-    String id;
+    private String id;
     /**
      * 名称
      */
-    String name;
+    private String name;
     /**
      * 路径
      */
-    String path;
+    private String path;
     /**
      * 方法（POST/..）必须为大写
      */
-    String method;
+    private String method;
 }

@@ -1,6 +1,5 @@
 package com.climb.common.user.bean;
 
-import com.climb.common.user.bean.MenuInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,21 +15,21 @@ public class MenuInfo {
     /**
      * 菜单id
      */
-    String id;
+    private String id;
     /**
      * 菜单父级id
      */
-    String parentId;
+    private String parentId;
     /**
      * 菜单名称
      */
-    String name;
+    private String name;
     /**
      * 图标
      */
-    String icon;
+    private String icon;
     /**
      * 叶子菜单结合
      */
-    List<MenuInfo> leafMenuInfos;
+    private List<MenuInfo> leafMenuInfos;
 }

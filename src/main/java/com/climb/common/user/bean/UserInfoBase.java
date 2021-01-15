@@ -15,27 +15,29 @@ public class UserInfoBase  {
     /**
      * 用户id
      */
-    String id;
+    private String id;
     /**
      * 用户名
      */
-    String username;
+    private String username;
     /**
      * 昵称
      */
-    String name;
+    private String name;
     /**
      * 手机号
      */
-    String phone;
+    private String phone;
     /**
      * mail
      */
-    String mail;
+    private String mail;
     /**
      * 性别 0 女 1 男
      */
-    Integer gender;
-
-    Date date;
+    private Integer gender;
+    /**
+     * 生日
+     */
+    private Date birthday;
 }

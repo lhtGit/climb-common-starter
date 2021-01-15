@@ -17,14 +17,14 @@ public class UserInfoDetails extends UserInfoBase {
     /**
      * 获取资源信息
      */
-    Collection<ResourceInfo> resourceInfo;
+    private Collection<ResourceInfo> resourceInfo;
     /**
      * 获取菜单信息（需要排序）
      */
-    List<MenuInfo> menuInfo;
+    private List<MenuInfo> menuInfo;
     /**
      * 获取角色信息
      */
-    Collection<Roleinfo> roleInfo;
+    private Collection<Roleinfo> roleInfo;
 
 }
