@@ -1,6 +1,8 @@
 package com.climb.common.bean;
 
 import com.google.common.collect.Maps;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.util.Map;
@@ -14,14 +16,17 @@ import java.util.Map;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel("API分页返回结果")
 public class PageResult<T> extends Result<T> {
 
+    @ApiModelProperty(value = "总数")
     private long total;
 
+    @ApiModelProperty(value = "页码")
     private long page;
 
+    @ApiModelProperty(value = "分页大小")
     private long size;
-
     @Override
     public Map<String,Object> toMap(){
         Map<String,Object> map = Maps.newHashMap();

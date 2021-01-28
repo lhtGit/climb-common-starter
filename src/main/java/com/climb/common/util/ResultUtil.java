@@ -1,6 +1,7 @@
 package com.climb.common.util;
 
 
+import com.climb.common.bean.PageDefinition;
 import com.climb.common.bean.PageResult;
 import com.climb.common.bean.Result;
 import com.climb.common.constant.CommonConstant;
@@ -115,6 +116,19 @@ public class ResultUtil {
         result.setCode(CommonConstant.ERROR_CODE);
         result.setMsg(msg);
         return result;
+    }
+
+
+    public static <T> PageResult<T> successPage(PageDefinition<?> page, List<T> data){
+        return successPage(CommonConstant.SUCCESS_MSG,page.getCurrent(),page.getSize(),page.getTotal(),data);
+    }
+
+
+    public static <T> PageResult<T> successPage(PageDefinition<T> page){
+        return successPage(CommonConstant.SUCCESS_MSG,page.getCurrent(),page.getSize(),page.getTotal(),page.getRecords());
+    }
+    public static <T> PageResult<T> successPage(String msg,PageDefinition<T> page){
+        return successPage(msg,page.getCurrent(),page.getSize(),page.getTotal(),page.getRecords());
     }
 
 }

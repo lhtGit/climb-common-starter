@@ -1,4 +1,4 @@
-package com.climb.common.config;
+package com.climb.common.util;
 
 import com.google.common.collect.Lists;
 import org.springframework.beans.BeansException;
@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
  * @author lht
  * @since 2020/12/22 10:18
  */
-public class ApplicationContextConfig implements ApplicationContextAware {
+public class ApplicationContextUtil implements ApplicationContextAware {
     private static ConfigurableApplicationContext context;
 
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         if (applicationContext instanceof ConfigurableApplicationContext) {
-            ApplicationContextConfig.context =  (ConfigurableApplicationContext) applicationContext;
+            ApplicationContextUtil.context =  (ConfigurableApplicationContext) applicationContext;
         }
 
     }
@@ -33,10 +33,10 @@ public class ApplicationContextConfig implements ApplicationContextAware {
      * @param clazz
      */
     public static <T> List<T> getBeanByInterface(Class<T> clazz){
-        String[] strings= ApplicationContextConfig.context.getBeanNamesForType(clazz);
+        String[] strings= ApplicationContextUtil.context.getBeanNamesForType(clazz);
         return Lists.newArrayList(strings)
                 .stream()
-                .map(beanName -> ApplicationContextConfig.context.getBean(beanName,clazz))
+                .map(beanName -> ApplicationContextUtil.context.getBean(beanName,clazz))
                 .collect(Collectors.toList());
     }
     /**
@@ -46,7 +46,7 @@ public class ApplicationContextConfig implements ApplicationContextAware {
      * @param clazz
      */
     public static <T> T getBean(Class<T> clazz){
-        return ApplicationContextConfig.context.getBean(clazz);
+        return ApplicationContextUtil.context.getBean(clazz);
     }
 
     /**
@@ -55,8 +55,8 @@ public class ApplicationContextConfig implements ApplicationContextAware {
      * @since  2020/12/22 10:19
      */
     public static void showdown(){
-        if (null != ApplicationContextConfig.context){
-            ApplicationContextConfig.context.close();
+        if (null != ApplicationContextUtil.context){
+            ApplicationContextUtil.context.close();
         }
     }
 }
