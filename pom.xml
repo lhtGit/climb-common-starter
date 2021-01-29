@@ -58,8 +58,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.climb</groupId>
-            <artifactId>climb-swagger-starter</artifactId>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
