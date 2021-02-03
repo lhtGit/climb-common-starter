@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
+import java.util.function.Function;
 
 /**
  * 获得用户信息的util
@@ -22,19 +23,63 @@ public class UserUtils {
     private UserUtils() {
     }
 
+
     /**
-     * 获取request中用户信息
+     * 获取request中用户信息，优先级是 任命用户信息-> gateway登录用户信息
      * @author lht
      * @since  2020/11/26 14:44
      */
     public static UserInfoBase getUserDetails(HttpServletRequest request){
+        return doUserDetails(request,request1 -> {
+            //尝试获取本地
+            String userStr = (String)request.getAttribute(CommonConstant.APPOINT_USER_INFO);
+            //尝试获取feign调用后设置在headers中
+            if(userStr==null){
+                userStr = request.getHeader(CommonConstant.APPOINT_USER_INFO);
+            }
+            //尝试获取gateway登录用户
+            if(userStr==null){
+                userStr = request.getHeader(CommonConstant.USER_INFO);
+            }
+            return userStr;
+        });
+    }
+
+    /**
+     * 获取gateway登录用户信息
+     * @author lht
+     * @since  2021/2/1 16:45
+     * @param request
+     */
+    public static UserInfoBase getOriginalUserDetails(HttpServletRequest request){
+        return doUserDetails(request,request1 -> request.getHeader(CommonConstant.USER_INFO));
+    }
+
+    /**
+     * 在request中获取用户信息
+     * @author lht
+     * @since  2021/2/1 16:46
+     * @param request
+     * @param userStrFunction
+     */
+    private static UserInfoBase doUserDetails(HttpServletRequest request, Function<HttpServletRequest,String> userStrFunction){
         UserInfoBase userInfo = null;
-        String userStr = request.getHeader(CommonConstant.USER_INFO);
+        if(request==null){
+            userInfo = new UserInfoBase();
+            userInfo.setId(NONE_USER_ID);
+            userInfo.setName("消息消费");
+            return userInfo;
+        }
+        String userStr =  userStrFunction.apply(request);
+        if(userStr==null){
+            userStr = request.getHeader(CommonConstant.USER_INFO);
+        }
+
         if(!StringUtils.isEmpty(userStr)){
             try{
                 userInfo = JSON.parseObject(URLDecoder.decode(userStr,CommonConstant.UTF8), UserInfoBase.class);
             }catch (Exception e){
-                log.error("获取用户信息失败",e);
+                log.error("过去用户信息失败",e);
             }
         }
         //设置未登录用户信息
@@ -45,7 +90,6 @@ public class UserUtils {
         }
         return userInfo;
     }
-
     /**
      * 判断是为未登录，没有用户信息
      * @author lht
