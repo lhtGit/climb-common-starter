@@ -3,7 +3,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.climb.common.handler.GlobalExceptionHandler,\
   com.climb.common.config.JacksonConfig,\
   com.climb.common.config.DateConverter,\
-  com.climb.common.util.ApplicationContextUtil,\
-  com.climb.common.request.filter.RequestWrapperFilter,\
-  com.climb.common.handler.LogInterceptor
+  com.climb.common.util.ApplicationContextUtil
 

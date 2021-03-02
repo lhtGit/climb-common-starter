@@ -53,7 +53,7 @@ public class LogInterceptor {
             if(request instanceof ReusableRequestWrapper){
                 logInfo.setRequestParams(getParams((ReusableRequestWrapper)request));;
             }else{
-                log.warn("HttpServletRequest 的实现类不是 ReusableRequestWrapper。");
+                log.info("HttpServletRequest 的实现类不是 ReusableRequestWrapper，特殊类型请求");
             }
             return pjp.proceed();
         }catch (Exception e){
