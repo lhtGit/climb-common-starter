@@ -22,9 +22,9 @@ public class Log {
 
     @Override
     public String toString() {
-        return  "\n请求信息：  "+url+"   "+method+"    "+startTime+" —— "+endTime+"  "+(isSuccess?"成功":"失败")+"\n"+
-                "用户信息：  "+userName+"("+userId+") \n"+
-                "请求参数：  "+requestParams+"\n";
+        return  "请求信息：  "+url+"   "+method+"    "+startTime+" —— "+endTime+"  "+(isSuccess?"成功":"失败")+
+                "   用户信息：  "+userName+"("+userId+")"+
+                "   请求参数：  "+requestParams;
 
     }
 }
