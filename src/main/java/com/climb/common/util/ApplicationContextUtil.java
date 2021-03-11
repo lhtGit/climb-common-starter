@@ -5,6 +5,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
  * @author lht
  * @since 2020/12/22 10:18
  */
+@Component("applicationContextUtil")
 public class ApplicationContextUtil implements ApplicationContextAware {
     private static ConfigurableApplicationContext context;
 

@@ -23,12 +23,14 @@ import java.io.IOException;
 @Order
 public class RequestWrapperFilter implements Filter {
 
+    private final String MULTIPART = "multipart/form-data";
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 //
         String contentType = servletRequest.getContentType();
         //特殊类型请求，不做请求包装
-        if(!StringUtils.isEmpty(contentType)&&contentType.contains("multipart/form-data")){
+        if(!StringUtils.isEmpty(contentType)&&contentType.contains(MULTIPART)){
             filterChain.doFilter(servletRequest,servletResponse);
         }else{
             //Read request.getBody() as many time you need

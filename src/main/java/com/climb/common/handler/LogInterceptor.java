@@ -12,6 +12,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -32,7 +33,9 @@ public class LogInterceptor {
     /**
      * http method get params by body
      */
-    private Set<String> METHOD_TO_BODY_SET = Sets.newHashSet(HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.PATCH.name());
+    private final Set<String> METHOD_TO_BODY_SET = Sets.newHashSet(HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.PATCH.name());
+
+    private final String URLENCODED = "x-www-form-urlencoded";
 
     @Around("execution(* com.climb.*.controller..*(..))")
     public Object log(ProceedingJoinPoint pjp) throws Throwable{
@@ -78,7 +81,12 @@ public class LogInterceptor {
      */
     private String  getParams(ReusableRequestWrapper request){
         String method = request.getMethod();
-        if(METHOD_TO_BODY_SET.contains(method)){
+        String contentType = request.getContentType();
+
+        boolean boo = true;
+        if(StringUtils.hasText(contentType)){
+            boo = !contentType.contains(URLENCODED);
+        }if(METHOD_TO_BODY_SET.contains(method)&&boo){
             return request.getBody().replaceAll("[\r\n]", "");
         }else{
             StringBuilder logParams = new StringBuilder();

@@ -63,7 +63,7 @@ public class UserUtils {
      * @param userStrFunction
      */
     private static UserInfoBase doUserDetails(HttpServletRequest request, Function<HttpServletRequest,String> userStrFunction){
-        UserInfoBase userInfo = null;
+        UserInfoBase userInfo;
         if(request==null){
             userInfo = new UserInfoBase();
             userInfo.setId(NONE_USER_ID);
@@ -74,14 +74,7 @@ public class UserUtils {
         if(userStr==null){
             userStr = request.getHeader(CommonConstant.USER_INFO);
         }
-
-        if(!StringUtils.isEmpty(userStr)){
-            try{
-                userInfo = JSON.parseObject(URLDecoder.decode(userStr,CommonConstant.UTF8), UserInfoBase.class);
-            }catch (Exception e){
-                log.error("过去用户信息失败",e);
-            }
-        }
+        userInfo = parseUser(userStr);
         //设置未登录用户信息
         if(userInfo==null){
             userInfo = new UserInfoBase();
@@ -90,6 +83,26 @@ public class UserUtils {
         }
         return userInfo;
     }
+
+
+    /**
+     * 解析用户信息
+     * @author lht
+     * @since  2021/3/11 13:44
+     * @param  userStr
+     */
+    public static UserInfoBase parseUser(String userStr){
+        if(StringUtils.isEmpty(userStr)){
+            return null;
+        }
+        try {
+            return JSON.parseObject(URLDecoder.decode(userStr,CommonConstant.UTF8), UserInfoBase.class);
+        }catch (Exception e){
+            log.error("解析用户信息失败",e);
+        }
+        return null;
+    }
+
     /**
      * 判断是为未登录，没有用户信息
      * @author lht
